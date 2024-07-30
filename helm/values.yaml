@@ -1,0 +1,26 @@
+replicaCount: 3
+
+image:
+  repository: bbweareark/hello-world-go
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 80
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: 8080
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: 8080
+  initialDelaySeconds: 15
+  periodSeconds: 20
+
+resources: {}
